@@ -1,0 +1,33 @@
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>{{ .Site.Title }}</title>
+
+<!-- OpenGraph -->
+{{ template "_internal/opengraph.html" . }}
+
+<!-- Twitter Cards -->
+{{ template "_internal/twitter_cards.html" . }}
+
+<!-- Stylesheets -->
+{{ $style := resources.Get "scss/main.scss" | toCSS (dict "targetPath" "css/application.css") | minify | fingerprint }}
+<link rel="stylesheet" href="{{ $style.Permalink }}">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.css" />
+{{- block "styles" . }}{{- end }}
+
+<!-- JS -->
+{{ $utils := resources.Get "js/utils.js" }}
+{{ $navbar := resources.Get "js/navbar.js" }}
+{{ $js := slice $utils $navbar | resources.Concat "js/application.js" }}
+{{ if not .Site.IsServer }}
+{{ $js = $js | minify | fingerprint}}
+{{ end }}
+<script src="{{ $js.Permalink }}"></script>
+<script async defer src="https://buttons.github.io/buttons.js"></script>
+{{- block "scripts" . }}{{- end }}
+
+<!-- Favicon -->
+<link rel="shortcut icon" type="image/x-icon" href="{{ "favicon.ico" | absURL }}" />
+
+<!-- PWA -->
+<link rel='manifest' href='/manifest.json'>

@@ -1,0 +1,12 @@
+---
+baseURL: https://definitelycodex.games/
+languageCode: en-us
+enableRobotsTXT: true
+title: DefinitelyCodex
+menu:
+blackfriday:
+    hrefTargetBlank: true
+markup:
+    goldmark:
+    renderer:
+        unsafe: true

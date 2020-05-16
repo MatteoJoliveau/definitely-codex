@@ -1,0 +1,38 @@
+<nav class="navbar has-background-dark" role="navigation" aria-label="main navigation">
+    <div class="navbar-brand">
+        <a class="navbar-item has-text-white" href="{{ .Site.BaseURL }}">
+            {{ .Site.Title }}
+        </a>
+
+        <a role="button" class="navbar-burger burger has-text-white" aria-label="menu" aria-expanded="false">
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+        </a>
+    </div>
+
+    <div  class="navbar-menu has-background-dark">
+        <div class="navbar-start">
+                {{ $currentPage := . }}
+                {{ range .Site.Menus.main }}
+                <a class="navbar-item navbar-entry" href="{{ .URL }}">
+                    {{ .Name }}
+                </a>
+                {{ end}}
+    
+        </div>
+
+        <div class="navbar-end">
+            <a class="navbar-item has-text-white" target="_blank" href="https://github.com/matteojoliveau">
+                <span class="icon is-large">
+                    <i class="fab fa-github"></i>
+                </span>
+            </a>
+            <a class="navbar-item has-text-white" target="_blank" href="https://twitter.com/matteojoliveau">
+                <span class="icon is-large">
+                    <i class="fab fa-twitter"></i>
+                </span>
+            </a>
+        </div>
+    </div>
+</nav>
